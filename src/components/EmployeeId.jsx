@@ -73,15 +73,15 @@ const IdCardPreview = () => {
 
   return (
     <>
-      <div className="flex items-center justify-center min-h-screen bg-gray-100 relative">
+      <div className="flex items-center justify-center min-h-screen bg-gray-100 relative p-4">
         <NavLink
-          className="absolute top-5 left-5 flex items-center px-2 py-2 border-2 bg-blue-950 rounded-md w-40"
+          className="absolute top-4 left-4 flex items-center px-3 py-2 border-2 bg-blue-950 rounded-md w-40"
           to="/userdashboard"
         >
           <FaLessThan className="text-white mr-2" />
           <span className="text font-semibold text-white">Previous Page</span>
         </NavLink>
-        <div className="relative w-80 bg-white rounded-xl shadow-xl p-6">
+        <div className="relative w-80 bg-white rounded-xl shadow-xl p-6 mt-14 mb-16">
           <h2 className="text-center text-2xl font-semibold text-gray-700 mb-5">
             ID Card Preview
           </h2>

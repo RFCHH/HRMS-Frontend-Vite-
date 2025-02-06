@@ -41,7 +41,7 @@ const Department = () => {
 
     try {
       const response = await axiosInstance.post(
-        '/hrmsapplication/department/create',
+        'hrmsapplication/department/create',
         departmentData
       );
 

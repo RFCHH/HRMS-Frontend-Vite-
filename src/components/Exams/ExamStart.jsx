@@ -114,9 +114,9 @@ function ExamStart() {
 
   return (
     <div className="container mx-auto p-6">           
-     <div className="flex items-center justify-start px-2 py-2 overflow-x-auto border-2 border-gray-800 rounded-md w-40 mb-5 mt-5">
-                    <FaLessThan className="text-orange-500 mr-2" />
-                    <button onClick={handlebackclick}><span className="font-semibold text-orange-500">Previous Page</span></button>
+     <div className="flex items-center justify-start px-2 py-2 overflow-x-auto bg-blue-950 border-2 border-gray-800 rounded-md w-40 mb-5 mt-5">
+                    <FaLessThan className="text-white mr-2" />
+                    <button onClick={handlebackclick}><span className="font-semibold text-white">Previous Page</span></button>
                 </div>
 
       <h1 className="text-3xl font-semibold mb-6">Exam Start</h1>

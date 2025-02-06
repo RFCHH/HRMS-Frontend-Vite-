@@ -43,7 +43,7 @@ const EmployeeProvider = ({ children }) => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://192.168.0.119:8080/hrmsapplication/employee/getProfileDashboard/${currentEmployeeId}`
+          `hrmsapplication/employee/getProfileDashboard/${currentEmployeeId}`
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");

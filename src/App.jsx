@@ -1,76 +1,76 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes, useLocation, } from "react-router-dom";
-import Dashboard from "./components/AdminDashboard.js";
-import Dashboard1 from "./components/Dashboard.js";
-import Profile from "./components/PersonalInfo.js";
-import Education from "./components/Education.js";
-import Current from "./components/CurrentExperience.js";
-import FamilyDetails from "./components/FamilyDetails.js";
-import Experience from "./components/Experience.js";
-import Location from "./components/Location.js";
-import National from "./components/National.js";
-import Travel from "./components/Travel.js";
-import Navbar from "./components/MainNavbar";
-import Login from "./components/Login.js";
-import ProtectedRoute from "./components/Authorized Access/ProtectedRoute.js";
-import AttendanceSheet from "./components/Attendence.js";
-import Interview from "./components/onboarding/InterviewTable.js";
-import Onboarding from "./components/onboarding/Onboarding.js";
-import AllEmployee from "./components/AllEmployees.js";
+import Dashboard from "./components/AdminDashboard.jsx";
+import Dashboard1 from "./components/Dashboard.jsx";
+import Profile from "./components/PersonalInfo.jsx";
+import Education from "./components/Education.jsx";
+import Current from "./components/CurrentExperience.jsx";
+import FamilyDetails from "./components/FamilyDetails.jsx";
+import Experience from "./components/Experience.jsx";
+import Location from "./components/Location.jsx";
+import National from "./components/National.jsx";
+import Travel from "./components/Travel.jsx";
+import Navbar from "./components/MainNavbar.jsx";
+import Login from "./components/Login.jsx";
+import ProtectedRoute from "./components/Authorized Access/ProtectedRoute.jsx";
+import AttendanceSheet from "./components/Attendence.jsx";
+import Interview from "./components/onboarding/InterviewTable.jsx";
+import Onboarding from "./components/onboarding/Onboarding.jsx";
+import AllEmployee from "./components/AllEmployees.jsx";
 
-import OrganizationCreation from "./components/Organizations.js";
-import Department from "./components/Department.js";
-import UserDashboard from "./components/UserDashboard.js";
-import Careers from "./components/Careers.js";
-import Holidays from "./components/Holidays";
-import Project from "./components/Project.js";
-import AssignmentCreation from "./components/Assignmentcreation.js";
-import EmployeeReports from "./components/EmployeeReports.js";
-import EmployeeId from "./components/EmployeeId.js";
-import Maintaience from "./components/undermaintaience.js";
-import Payroll from "./components/onboarding/Payrollsection";
-import ApprovalMaster from "./components/Approvals/ApprovalMaster.js";
-import LeaveApproval from "./components/Approvals/LeaveApproval.js";
-import LeaveStatus from "./components/Approvals/LeaveStatus.js";
-import AttendanceApproval from "./components/Approvals/AttendanceApproval.js";
-import AttendanceStatus from "./components/Approvals/AttendanceStatus.js";
-import ProfileDetailsStatus from "./components/Approvals/ProfileDetailStatus.js";
-import ProfileDetailsApproval from "./components/Approvals/ProfileDetailsApproval.js";
-import Assignments from "./components/Assignments/Assignments.js";
-import ForgotPassword from "./components/ForgetPassword.js";
-import Organisation from "./components/Organization.js";
-import Associate360 from "./components/Associate360.js";
-import ManagerEmployee from "./components/ManagerEmployee.js";
-// import ProfileCreation from './components/onboarding/interviewprofile';
-// import InterviewTable from "./components//InterviewTable.js";
-// import TokenExpired from "./components/TokenExpiry.js";
-import EmployeePerformane from "./components/EmployeePerformance/Performancelist.js";
-import Deliverables from "./components/EmployeePerformance/Deliverables";
-import LeaveForm from "./components/Leaves/LeaveForm.js";
-import LeaveBalance from "./components/Leaves/LeaveBalance.js";
-import LeaveRequest from "./components/Leaves/LeaveRequest.js";
+import OrganizationCreation from "./components/Organizations.jsx";
+import Department from "./components/Department.jsx";
+import UserDashboard from "./components/UserDashboard.jsx";
+import Careers from "./components/Careers.jsx";
+import Holidays from "./components/Holidays.jsx";
+import Project from "./components/Project.jsx";
+import AssignmentCreation from "./components/Assignmentcreation.jsx";
+import EmployeeReports from "./components/EmployeeReports.jsx";
+import EmployeeId from "./components/EmployeeId.jsx";
+import Maintaience from "./components/undermaintaience.jsx";
+import Payroll from "./components/onboarding/Payrollsection.jsx";
+import ApprovalMaster from "./components/Approvals/ApprovalMaster.jsx";
+import LeaveApproval from "./components/Approvals/LeaveApproval.jsx";
+import LeaveStatus from "./components/Approvals/LeaveStatus.jsx";
+import AttendanceApproval from "./components/Approvals/AttendanceApproval.jsx";
+import AttendanceStatus from "./components/Approvals/AttendanceStatus.jsx";
+import ProfileDetailsStatus from "./components/Approvals/ProfileDetailStatus.jsx";
+import ProfileDetailsApproval from "./components/Approvals/ProfileDetailsApproval.jsx";
+import Assignments from "./components/Assignments/Assignments.jsx";
+import ForgotPassword from "./components/ForgetPassword.jsx";
+import Organisation from "./components/Organization.jsx";
+import Associate360 from "./components/Associate360.jsx";
+import ManagerEmployee from "./components/ManagerEmployee.jsx";
+// import ProfileCreation from './components/onboarding/interviewprofile.jsx';
+// import InterviewTable from "./components//InterviewTable.jsx";
+// import TokenExpired from "./components/TokenExpiry.jsx";
+import EmployeePerformane from "./components/EmployeePerformance/Performancelist.jsx";
+import Deliverables from "./components/EmployeePerformance/Deliverables.jsx";
+import LeaveForm from "./components/Leaves/LeaveForm.jsx";
+import LeaveBalance from "./components/Leaves/LeaveBalance.jsx";
+import LeaveRequest from "./components/Leaves/LeaveRequest.jsx";
 
-import TimeEntryPage from "./components/TimeSheet/TimeEntryPage.js";
-import EmployeeList from "./components/TimeSheet/EmployeeList.js";
-import TimeSheet from "./components/TimeSheet/TotalTime.js";
-import EntryPage from "./components/TimeSheet/EntryPage.js"
-import DesignationForm from "./components/designations/Designations.js";
-import PayrollUser from "./components/onboarding/Payrolluser.js"
-import Unauthorized from "./components/Authorized Access/Unauthorized.js"
-import OnboardingDashboard from "./components/OnboardingDashboard/OnboardingDashboard.js";
-import OnboardingPersonalDetails from "./components/OnboardingDashboard/OnboardingPersonalDetails";
+import TimeEntryPage from "./components/TimeSheet/TimeEntryPage.jsx";
+import EmployeeList from "./components/TimeSheet/EmployeeList.jsx";
+import TimeSheet from "./components/TimeSheet/TotalTime.jsx";
+import EntryPage from "./components/TimeSheet/EntryPage.jsx"
+import DesignationForm from "./components/designations/Designations.jsx";
+import PayrollUser from "./components/onboarding/Payrolluser.jsx"
+import Unauthorized from "./components/Authorized Access/Unauthorized.jsx"
+import OnboardingDashboard from "./components/OnboardingDashboard/OnboardingDashboard.jsx";
+import OnboardingPersonalDetails from "./components/OnboardingDashboard/OnboardingPersonalDetails.jsx";
 
 import { ToastContainer } from "react-toastify";
-import Examdetails from "./components/Exams/ExamDetails.js";
-import List from "./components/Exams/EmployeeList.js"
-import Exam from "./components/Exams/SelfExam.js";
-import CreateExam from "./components/Exams/CreateExam.js";
-import CreateQuestion from "./components/Exams/CreateQuestion.js";
-import ExamStart from "./components/Exams/ExamStart.js";
+import Examdetails from "./components/Exams/ExamDetails.jsx";
+import List from "./components/Exams/EmployeeList.jsx"
+import Exam from "./components/Exams/SelfExam.jsx";
+import CreateExam from "./components/Exams/CreateExam.jsx";
+import CreateQuestion from "./components/Exams/CreateQuestion.jsx";
+import ExamStart from "./components/Exams/ExamStart.jsx";
 
-import Data from "./components/Exams/Examdata.js";
+import Data from "./components/Exams/Examdata.jsx";
 
-import GetStatus from "./components/TimeSheet/GetStatus.js";
+import GetStatus from "./components/TimeSheet/GetStatus.jsx";
 
 
 

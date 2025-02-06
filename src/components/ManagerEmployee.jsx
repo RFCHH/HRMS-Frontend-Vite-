@@ -153,14 +153,14 @@ const ManagerEmployee = () => {
 
       <div className="flex justify-between mt-4">
         <button
-          className="bg-gray-200 text-orange-400 px-4 py-2 rounded"
+          className="bg-blue-950 text-white px-4 py-2 rounded"
           onClick={() => setPageNumber((prev) => prev - 1)}
           disabled={pageNumber === 0}
         >
           Previous
         </button>
         <button
-          className="bg-gray-200 text-orange-400 px-4 py-2 rounded"
+          className="bg-blue-950 text-white px-4 py-2 rounded"
           onClick={() => setPageNumber((prev) => prev + 1)}
         >
           Next

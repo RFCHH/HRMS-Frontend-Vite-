@@ -363,8 +363,8 @@ const NationalIDDetails = () => {
 
         {isPopupOpen && (
           <div className="bg-black fixed inset-0 flex items-center justify-center bg-opacity-50">
-            <div className="bg-gray-300 p-4 rounded-lg shadow-lg w-11/12 sm:w-3/4 lg:w-1/2">
-              <div className="flex justify-between items-center mb-8 bg-blue-950 rounded-lg pl-2 pr-2 w-full p-2">
+            <div className="bg-gray-300 p-4  rounded-lg shadow-lg w-11/12 sm:w-3/4 lg:w-3/4 ">
+              <div className="flex justify-between items-center mb-8 bg-blue-950 rounded-lg pl-2 pr-2 lg:w-full p-2">
                 <h2 className="text-lg text-white w-full">
                   {isEditMode ? 'Edit' : 'Add'} National ID Details
                 </h2>
@@ -376,7 +376,7 @@ const NationalIDDetails = () => {
                 </button>
               </div>
               <form onSubmit={handleSubmit} onKeyDown={handleEnter}>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-4 ">
                   {/* ID Type */}
                   <div className="col-span-1">
                     <label className="block mb-1">ID Type:</label>

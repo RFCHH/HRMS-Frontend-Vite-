@@ -21,7 +21,7 @@ const [userRoleError, setUserRoleError] = useState("");
   const navigate = useNavigate();
   const fetchEmployees = async () => {
     try {
-      const response = await axiosInstance.get("/hrmsapplication/employee/getAll", {
+      const response = await axiosInstance.get("hrmsapplication/employee/getAll", {
         params: {
           pageNumber: 0,  
           size: 100000000, 

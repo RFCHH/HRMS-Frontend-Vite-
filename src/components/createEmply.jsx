@@ -293,6 +293,13 @@ const EditFamilyDetails = ({ member, onSave, onCancel }) => {
                     <option value="+91">+91 (India)</option>
                     <option value="+1">+1 (USA)</option>
                     <option value="+44">+44 (UK)</option>
+                    <option value="+61">+61 (AUSTRALIA)</option>
+                  <option value="+64">+64 (NEW ZEALAND)</option>
+                  <option value="+27">+27 (SOUTH AFRICA)</option>
+                  <option value="+977">+977 (NEPAL)</option>
+                  <option value="+94">+94 (SRILANKA)</option>
+                  <option value="+60">+60 (MALAYSIA)</option>
+                  <option value="+65">+65 (SINGAPORE)</option>
                   </select>
                   {errors.countryCode && <p className="text-red-800">{errors.countryCode}</p>}
       

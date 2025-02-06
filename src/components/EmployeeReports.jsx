@@ -18,7 +18,7 @@ const EmployeeReports = () => {
     try {
       // Construct the URL using employeeId and attendanceDate from the input fields
       const response = await axiosInstance.get(
-        `/hrmsapplication/attendance/reportees?employeeId=${employeeId}&attendanceDate=${attendanceDate}`
+        `hrmsapplication/attendance/reportees?employeeId=${employeeId}&attendanceDate=${attendanceDate}`
       );
       setEmployees(response.data);
       setIsDataFetched(true); 
