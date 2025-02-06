@@ -57,7 +57,7 @@ const PerformanceAndDeliverables = () => {
       const fetchPerformanceIds = async () => {
         try {
           const response = await axiosInstance.get(
-            `/hrmsapplication/employeePerformance/${employeeId}/performance-ids`
+            `hrmsapplication/employeePerformance/${employeeId}/performance-ids`
           );
           if (response.status === 200) {
             setPerformanceIds(response.data); // Assuming response data contains an array of performance IDs
@@ -184,7 +184,7 @@ const PerformanceAndDeliverables = () => {
     try {
       // Sending the correct structure for POST request
       const response = await axiosInstance.post(
-        "hrmsapplication/employeePerformance/create",
+        `hrmsapplication/employeePerformance/create`,
         {
           employeeId: performanceData.employeeId,
           managerId: performanceData.managerId,
@@ -239,7 +239,7 @@ const PerformanceAndDeliverables = () => {
     // PATCH call to update the comments for selected performance
     try {
       const response = await axiosInstance.patch(
-        "hrmsapplication/employeePerformance/updateEmployeePerformance",
+        `hrmsapplication/employeePerformance/updateEmployeePerformance`,
         {
           employeeId: performanceData.employeeId,
           managerId: performanceData.managerId,
@@ -298,7 +298,7 @@ const PerformanceAndDeliverables = () => {
       } else {
         // Handle the creation of a new deliverable
         const response = await axiosInstance.post(
-          "hrmsapplication/deliverable/createDeliverable",
+          `hrmsapplication/deliverable/createDeliverable`,
           deliverableData
         );
   

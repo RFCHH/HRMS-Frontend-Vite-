@@ -43,7 +43,7 @@ function ExperiencePage() {
     const fetchTableData = async () => {
       try {
         const response = await axiosInstance.get(
-          `/hrmsapplication/documents/list`,
+          `hrmsapplication/documents/list`,
           {
             params: {
               organizationId,

@@ -978,6 +978,7 @@ const ExperienceCard = () => {
             payload
           );
           setIsPopupOpen(false);
+          fetchCurrentDetails();
         }
 
         console.log("API Response:", response);

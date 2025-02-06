@@ -71,7 +71,7 @@ const OrganizationCreation = () => {
       if (isNewOrganization) {
       
         const response = await axiosInstance.post(
-          '/hrmsapplication/organization/create',
+          'hrmsapplication/organization/create',
           organizationData
         );
         console.log('Organization created:', response.data);
@@ -81,7 +81,7 @@ const OrganizationCreation = () => {
       } else {
         // PATCH call for updating an existing organization
         const response = await axiosInstance.patch(
-          '/hrmsapplication/organization/update',
+          'hrmsapplication/organization/update',
           organizationData // Include the organization ID
         );
         toast.success("Data loaded successfully!");
@@ -96,7 +96,7 @@ const OrganizationCreation = () => {
   const fetchOrganizationData = async () => {
     try {
       const response = await axiosInstance.get(
-        `/hrmsapplication/organization/getOrganization${orgId}`
+        `hrmsapplication/organization/getOrganization${orgId}`
       );
 
       const data = response.data;

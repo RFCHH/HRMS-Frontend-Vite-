@@ -93,7 +93,7 @@ const Dashboard = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://192.168.0.119:8080/hrmsapplication/employee/getProfileDashboard/${id}`
+          `hrmsapplication/employee/getProfileDashboard/${id}`
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");

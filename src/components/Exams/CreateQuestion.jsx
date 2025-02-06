@@ -131,7 +131,7 @@ function CreateQuestion() {
       let response;
       if (editingQuestion) {
         // Use PATCH request for editing an existing question
-        response = await axiosInstance.patch('https://hrms-application-a6vr.onrender.com/hrmsapplication/exam/update-question', data);
+        response = await axiosInstance.patch('hrmsapplication/exam/update-question', data);
       } else {
         // Create a new question (this would still be a POST request as usual)
         response = await axiosInstance.post('hrmsapplication/exam/addquoestions', data);

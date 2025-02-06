@@ -32,7 +32,7 @@ const FamilyDetails = () => {
 
       try {
         // GET request to fetch family details for the specified employee ID
-        const response = await axios.get(`http://192.168.0.119:8080/hrmsapplication/familyDetails/HRMS1`);
+        const response = await axios.get(`hrmsapplication/familyDetails/HRMS1`);
         const data = response.data;
 
         // Check if data exists
@@ -225,7 +225,7 @@ const FamilyDetails = () => {
         if (isEditMode) {
           // PATCH request to update existing family member details
           console.log("Sending PATCH request to update family member");
-          await axios.patch(`http://192.168.0.119:8080/hrmsapplication/familyDetails/updateFamilyDetails`, {
+          await axios.patch(`hrmsapplication/familyDetails/updateFamilyDetails`, {
             ...payload,
             memberId: formData.memberId,
           });
@@ -243,7 +243,7 @@ const FamilyDetails = () => {
           // POST request to add a new family member
           console.log("Sending POST request to add family member");
           const response = await axios.post(
-            `http://192.168.0.119:8080/hrmsapplication/familyDetails/createFamilyDetails?employeeId=${employeeId}`,
+            `hrmsapplication/familyDetails/createFamilyDetails?employeeId=${employeeId}`,
             payload
           );
   
@@ -324,7 +324,7 @@ const FamilyDetails = () => {
     if (window.confirm(`Are you sure you want to delete ${Name}?`)) {
       try {
         await axios.delete(
-          `http://192.168.0.119:8080/hrmsapplication/familyDetails/delete?employeeId=${employeeId}&memberId=${memberId}`
+          `hrmsapplication/familyDetails/delete?employeeId=${employeeId}&memberId=${memberId}`
         );
 
         

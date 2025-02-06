@@ -95,7 +95,7 @@ const handleDateChange = (e) => {
 
     try {
       const response = await axiosInstance.get(
-        `/hrmsapplication/attendance/self`,
+        `hrmsapplication/attendance/self`,
         {
           params: {
             employeeId: employeeId,
@@ -201,7 +201,7 @@ const handleDateChange = (e) => {
 
     try {
       const response = await axiosInstance.post(
-        "/hrmsapplication/attendance/create",
+        "hrmsapplication/attendance/create",
         payload
       );
       console.log("Attendance successfully created:", response.data);
