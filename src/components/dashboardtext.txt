@@ -1,0 +1,425 @@
+These code contains dashboard which has the user can upload theimgae in that dashboard itself
+
+import React, { useEffect, useState } from "react";
+import { AiTwotoneHome } from "react-icons/ai";
+import {
+  IoPersonSharp,
+  IoLocationOutline,
+} from "react-icons/io5";
+import { FaRegIdCard, FaBookReader } from "react-icons/fa";
+import { PiSuitcaseSimpleFill, PiAirplaneTiltFill } from "react-icons/pi";
+import { TiGroup } from "react-icons/ti";
+import { Link } from "react-router-dom";
+
+const Dashboard = () => {
+  const [employeeData, setEmployeeData] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [uploading, setUploading] = useState(false);
+  const [uploadError, setUploadError] = useState("");
+
+  const mockData = {
+    employeeProfileDetails: {
+      firstname: "Jonson",
+      employeeId: "HRMS123",
+      employeeDesignation: "Software Developer",
+      dob: "1990-01-01",
+      phoneNumber: "1234567890",
+      doj: "2020-01-01",
+      profileImage: "/rfchh.jpg", // Added profileImage to mock data
+    },
+    educationDetails: {
+      degree: "B.Tech",
+      institutionName: "XYZ University",
+      yearOfPass: "2012",
+    },
+    currentExperienceDetails: {
+      organisationName: "TechCorp",
+      experience: "2",
+      designation: "Senior Developer",
+    },
+    experienceDetails: {
+      organisationName: "OldTech",
+      experience: "3",
+      designation: "Junior Developer",
+    },
+    familyDetails: {
+      name: "Doe Family",
+      relation: "Father",
+    },
+    AddressDetails: {
+      houseNumber: "123",
+      street: "Main Street",
+      village: "Sample Village",
+      town: "Sample Town",
+      district: "Sample District",
+      state: "Sample State",
+      country: "Sample Country",
+      pincode: "123456",
+    },
+    nationalIDDetails: {
+      nationalId: "Passport",
+      nationalIDNum: "A1234567",
+    },
+    travelDetails: {
+      passportNumber: "A1234567",
+      issueDate: "2015-01-01",
+      expireDate: "2025-01-01",
+    },
+  };
+
+  const id = "HRMS1";
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `http://192.168.0.119:8080/hrmsapplication/employee/getProfileDashboard/${id}`
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        setEmployeeData(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setEmployeeData(mockData);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const handleImageChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      // Optional: Validate file type and size here
+      setSelectedImage(file);
+    }
+  };
+
+  const handleImageUpload = async () => {
+    if (!selectedImage) {
+      setUploadError("Please select an image to upload.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("profileImage", selectedImage);
+
+    setUploading(true);
+    setUploadError("");
+
+    try {
+      const response = await fetch(
+        `http://192.168.0.119:8080/hrmsapplication/employee/uploadProfileImage/${id}`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to upload image.");
+      }
+
+      const data = await response.json();
+
+      // Assuming the response contains the updated profile image URL
+      setEmployeeData((prevData) => ({
+        ...prevData,
+        employeeProfileDetails: {
+          ...prevData.employeeProfileDetails,
+          profileImage: data.profileImageUrl, // Adjust based on your API response
+        },
+      }));
+
+      // Clear selected image after successful upload
+      setSelectedImage(null);
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      setUploadError("Failed to upload image. Please try again.");
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  if (!employeeData) {
+    return (
+      <div className="flex items-center justify-center h-screen bg-gray-50">
+        <div className="text-center">
+          <svg
+            className="animate-spin h-10 w-10 text-indigo-500 mx-auto"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <circle
+              className="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              strokeWidth="4"
+            ></circle>
+            <path
+              className="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8v8H4z"
+            ></path>
+          </svg>
+          <h2 className="mt-4 text-xl text-gray-700">
+            Loading... Please wait while we fetch your data.
+          </h2>
+        </div>
+      </div>
+    );
+  }
+
+  const {
+    employeeProfileDetails,
+    educationDetails,
+    currentExperienceDetails,
+    experienceDetails,
+    familyDetails,
+    AddressDetails,
+    nationalIDDetails,
+    travelDetails,
+  } = employeeData;
+
+  const tabs = [
+    { name: "Profile", route: "/personalDetails" },
+    { name: "National ID", route: "/National" },
+    { name: "Education", route: "/educationDetails" },
+    { name: "Address", route: "/location" },
+    { name: "Travel", route: "/Travel" },
+    { name: "Experience", route: "/experience" },
+    { name: "Family", route: "/familyDetails" },
+    { name: "Current Experience", route: "/current" },
+  ];
+
+  const cardData = [
+    {
+      title: "Profile",
+      icon: <IoPersonSharp size={28} className="text-indigo-600" />,
+      content: (
+        <>
+          <p><span className="font-semibold">Name:</span> {employeeProfileDetails?.firstname}</p>
+          <p><span className="font-semibold">DOB:</span> {employeeProfileDetails?.dob}</p>
+          <p><span className="font-semibold">Phone:</span> {employeeProfileDetails?.phoneNumber}</p>
+          <p><span className="font-semibold">DOJ:</span> {employeeProfileDetails?.doj}</p>
+        </>
+      ),
+      link: `/personalDetails/${id}`,
+    },
+    {
+      title: "National ID",
+      icon: <FaRegIdCard size={28} className="text-green-600" />,
+      content: (
+        <>
+          <p><span className="font-semibold">ID Type:</span> {nationalIDDetails?.nationalId}</p>
+          <p><span className="font-semibold">ID Number:</span> {nationalIDDetails?.nationalIDNum}</p>
+        </>
+      ),
+      link: "/National",
+    },
+    {
+      title: "Education",
+      icon: <FaBookReader size={28} className="text-purple-600" />,
+      content: (
+        <>
+          <p><span className="font-semibold">Degree:</span> {educationDetails?.degree}</p>
+          <p><span className="font-semibold">Institute:</span> {educationDetails?.institutionName}</p>
+          <p><span className="font-semibold">Year:</span> {educationDetails?.yearOfPass}</p>
+        </>
+      ),
+      link: "/educationDetails",
+    },
+    {
+      title: "Address",
+      icon: <IoLocationOutline size={28} className="text-yellow-600" />,
+      content: (
+        <p>
+          {`${AddressDetails?.houseNumber}, ${AddressDetails?.street}, ${AddressDetails?.village}, ${AddressDetails?.town}, ${AddressDetails?.district}, ${AddressDetails?.state}, ${AddressDetails?.country} - ${AddressDetails?.pincode}`}
+        </p>
+      ),
+      link: "/location",
+    },
+    {
+      title: "Travel",
+      icon: <PiAirplaneTiltFill size={28} className="text-indigo-600" />,
+      content: (
+        <>
+          <p><span className="font-semibold">Passport:</span> {travelDetails?.passportNumber}</p>
+          <p><span className="font-semibold">Issue Date:</span> {travelDetails?.issueDate}</p>
+          <p><span className="font-semibold">Expire Date:</span> {travelDetails?.expireDate}</p>
+        </>
+      ),
+      link: "/Travel",
+    },
+    {
+      title: "Experience",
+      icon: <PiSuitcaseSimpleFill size={28} className="text-red-600" />,
+      content: (
+        <>
+          <p><span className="font-semibold">Organization:</span> {experienceDetails?.organisationName}</p>
+          <p><span className="font-semibold">Experience:</span> {experienceDetails?.experience} Years</p>
+          <p><span className="font-semibold">Designation:</span> {experienceDetails?.designation}</p>
+        </>
+      ),
+      link: "/experience",
+    },
+    {
+      title: "Family",
+      icon: <TiGroup size={28} className="text-teal-600" />,
+      content: (
+        <>
+          <p><span className="font-semibold">Father's Name:</span> {familyDetails?.name}</p>
+          <p><span className="font-semibold">Relationship:</span> {familyDetails?.relation}</p>
+          <p><span className="font-semibold">Marital Status:</span> Unmarried</p>
+        </>
+      ),
+      link: "/familyDetails",
+    },
+    {
+      title: "Current Experience",
+      icon: <PiSuitcaseSimpleFill size={28} className="text-pink-600" />,
+      content: (
+        <>
+          <p><span className="font-semibold">Organization:</span> {currentExperienceDetails?.organisationName}</p>
+          <p><span className="font-semibold">Experience:</span> {currentExperienceDetails?.experience} Years</p>
+          <p><span className="font-semibold">Designation:</span> {currentExperienceDetails?.designation}</p>
+        </>
+      ),
+      link: "/current",
+    },
+  ];
+
+  return (
+    <div className="bg-gray-50 min-h-screen">
+      {/* Header */}
+      <header className="flex items-center justify-between p-4 bg-gradient-to-r from-indigo-600 to-blue-500 shadow-md">
+        <div className="flex items-center">
+          <AiTwotoneHome size={30} className="text-white mr-3" />
+          <h1 className="text-2xl font-semibold text-white">Dashboard</h1>
+        </div>
+        {/* You can add a Navbar or User Profile here if needed */}
+      </header>
+
+      {/* Profile Section */}
+      <section className="mt-6 max-w-7xl mx-auto p-6 bg-white shadow-lg rounded-lg flex items-center space-x-6">
+        <div className="relative">
+          <img
+            src={
+              employeeProfileDetails?.profileImage
+                ? employeeProfileDetails.profileImage
+                : "/defaultProfile.jpg" // Fallback image
+            }
+            alt="Profile"
+            className="w-24 h-24 rounded-full border-4 border-indigo-500 object-cover"
+          />
+          <label
+            htmlFor="profileImage"
+            className="absolute bottom-0 right-0 bg-indigo-600 text-white rounded-full p-1 cursor-pointer"
+            title="Upload Profile Image"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 10l4.553-2.276A2 2 0 0122 8.618v6.764a2 2 0 01-1.447 1.902L15 18M15 10l-4.553-2.276A2 2 0 008 8.618v6.764a2 2 0 001.447 1.902L15 18m0-8v8m0 0H9m6 0l-3-3"
+              />
+            </svg>
+          </label>
+          <input
+            type="file"
+            id="profileImage"
+            accept="image/*"
+            className="hidden"
+            onChange={handleImageChange}
+          />
+        </div>
+        <div>
+          <h2 className="text-2xl font-semibold text-gray-800">
+            {employeeProfileDetails?.firstname}{" "}
+            <span className="text-gray-500">
+              ({employeeProfileDetails?.employeeId})
+            </span>
+          </h2>
+          <p className="text-gray-600">
+            {employeeProfileDetails?.employeeDesignation}
+          </p>
+          {selectedImage && (
+            <div className="mt-2">
+              <p className="text-sm text-gray-700">
+                Selected Image: {selectedImage.name}
+              </p>
+              <button
+                onClick={handleImageUpload}
+                disabled={uploading}
+                className="mt-1 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition-colors duration-200"
+              >
+                {uploading ? "Uploading..." : "Upload Image"}
+              </button>
+              {uploadError && (
+                <p className="mt-1 text-sm text-red-500">{uploadError}</p>
+              )}
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Tab Navigation */}
+      <nav className="mt-8 max-w-7xl mx-auto px-6">
+        <div className="flex flex-wrap bg-white shadow-md rounded-lg overflow-hidden">
+          {tabs.map((tab, index) => (
+            <Link to={tab.route} key={index} className="flex-1">
+              <button className="w-full py-3 px-4 text-center text-gray-700 hover:bg-indigo-600 hover:text-white transition-colors duration-200">
+                {tab.name}
+              </button>
+            </Link>
+          ))}
+        </div>
+      </nav>
+
+      {/* Content Grid */}
+      <main className="mt-8 max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {cardData.map((card, index) => (
+          <Link to={card.link} key={index}>
+            <div className="bg-white shadow-md rounded-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300 p-6 h-full flex flex-col">
+              <div className="flex items-center mb-4">
+                {card.icon}
+                <h3 className="text-xl font-semibold text-gray-800 ml-3">
+                  {card.title}
+                </h3>
+              </div>
+              <div className="flex-1 text-gray-600 space-y-2">
+                {card.content}
+              </div>
+              <div className="mt-4">
+                <span className="text-sm text-indigo-500 hover:underline">
+                  View Details &raquo;
+                </span>
+              </div>
+            </div>
+          </Link>
+        ))}
+      </main>
+
+      {/* Footer (Optional) */}
+      <footer className="mt-12 py-4 bg-white shadow-inner">
+        <div className="max-w-7xl mx-auto text-center text-gray-500">
+          © {new Date().getFullYear()} Your Company. All rights reserved.
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default Dashboard;
