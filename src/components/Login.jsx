@@ -115,7 +115,7 @@ function Login() {
     setIsLoading(true);
 
     try {
-      const response = await fetch(`https://hrms-application-oxy0.onrender.com/hrmsapplication/authentication/login?${queryParams.toString()}`, {
+      const response = await fetch(`https://hrms-application-l1e0.onrender.com/hrmsapplication/authentication/login?${queryParams.toString()}`, {
         method: 'POST',
         });
 

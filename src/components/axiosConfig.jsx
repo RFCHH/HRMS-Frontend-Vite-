@@ -436,7 +436,9 @@ import axios from 'axios';
 // Axios instance for general API requests
 const axiosInstance = axios.create({
   // baseURL: 'https://hrms-application-a6vr.onrender.com/',
-  baseURL: 'https://hrms-application-oxy0.onrender.com/',
+  // baseURL: 'https://hrms-application-oxy0.onrender.com/',
+  baseURL: 'https://hrms-application-l1e0.onrender.com/',
+
 });
 
 axiosInstance.interceptors.request.use(
