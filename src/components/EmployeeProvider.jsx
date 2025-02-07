@@ -43,7 +43,7 @@ const EmployeeProvider = ({ children }) => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `hrmsapplication/employee/getProfileDashboard/${currentEmployeeId}`
+          `https://hrms-application-oxy0.onrender.com/hrmsapplication/employee/getProfileDashboard/${currentEmployeeId}`
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");

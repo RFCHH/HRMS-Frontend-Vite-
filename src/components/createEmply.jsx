@@ -203,7 +203,7 @@ const EditFamilyDetails = ({ member, onSave, onCancel }) => {
 
     if (validateForm()) {
       try {
-        const response = await axiosInstance.post("hrmsapplication/employee/create", formValues);
+        const response = await axiosInstance.post(`hrmsapplication/employee/create`, formValues);
         console.log("Form submitted successfully", response.data);
         onSave(formValues); 
         toast.success("created sucessfully");
@@ -229,7 +229,7 @@ const EditFamilyDetails = ({ member, onSave, onCancel }) => {
           {/* Header */}
           <div className="bg-blue-950 rounded-md p-2 mb-4 flex items-center justify-between">
             <h2 className="text-lg  text-white pl-2">Add Personal Details</h2>
-            <button className="text-white pr-1 hover:text-gray-700" onClick={onCancel}>
+            <button className="text-white pr-1 " onClick={onCancel}>
               <MdCancelPresentation size={24} />
             </button>
           </div>
@@ -291,9 +291,9 @@ const EditFamilyDetails = ({ member, onSave, onCancel }) => {
                   <select name="countryCode" value={formValues.countryCode} onChange={handleChange} className="p-2 border border-gray-300 rounded-md">
                     <option value="+code">Select</option>
                     <option value="+91">+91 (India)</option>
-                    <option value="+1">+1 (USA)</option>
-                    <option value="+44">+44 (UK)</option>
-                    <option value="+61">+61 (AUSTRALIA)</option>
+                  <option value="+1">+1 (USA)</option>
+                  <option value="+44">+44 (UK)</option>
+                  <option value="+61">+61 (AUSTRALIA)</option>
                   <option value="+64">+64 (NEW ZEALAND)</option>
                   <option value="+27">+27 (SOUTH AFRICA)</option>
                   <option value="+977">+977 (NEPAL)</option>

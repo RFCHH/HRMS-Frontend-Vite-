@@ -93,7 +93,7 @@ const Dashboard = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `hrmsapplication/employee/getProfileDashboard/${id}`
+          `https://hrms-application-oxy0.onrender.com/hrmsapplication/employee/getProfileDashboard/${id}`
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");

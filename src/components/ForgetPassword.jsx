@@ -55,7 +55,7 @@ const ForgotPassword = () => {
     } else {
       setErrors({});
       try {
-        const response = await axios.post("hrmsapplication/authentication/forgot-password", {
+        const response = await axios.post(`https://hrms-application-oxy0.onrender.com/hrmsapplication/authentication/forgot-password`, {
           employeeId: employeeId,
         });
         
@@ -90,7 +90,7 @@ const ForgotPassword = () => {
       setErrors({ confirmPassword: "Passwords do not match or are too short" });
     } else {
       try {
-        await axios.patch("hrmsapplication/authentication/resetPassword", {
+        await axios.patch("https://hrms-application-oxy0.onrender.com/hrmsapplication/authentication/resetPassword", {
           employeeId: employeeId,
           otp: otpValue, // Send OTP here for password reset
           password: createPassword,

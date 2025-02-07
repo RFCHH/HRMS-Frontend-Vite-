@@ -33,7 +33,7 @@ function ExperiencePage() {
   const nameRegex = /^[A-Za-z][A-Za-z0-9\s]*$/;
   const employRegex = /^[a-zA-Z0-9\-/]*$/;
   const regex = /^[A-Za-z][A-Za-z\s]*$/;
-  const [imageTableData, setImageTableData] = useState([]);  // Initialize as empty array
+  const [imageTableData, setImageTableData] = useState([]);  
 
 
   const userRole = localStorage.getItem("UserRole");

@@ -34,8 +34,8 @@ const TokenExpiredPopup = () => {
         try {
             const refreshToken = getCookie('refreshToken');
             console.log("Refresh token:", refreshToken);
-            const response = await axios.post('hrms-application-a6vr.onrender.com/hrmsapplication/authentication/refreshToken', {
-            // const response = await axios.post('hrmsapplication/authentication/refreshToken', {
+            const response = await axios.post('https://hrms-application-a6vr.onrender.com/hrmsapplication/authentication/refreshToken', {
+            // const response = await axios.post('http://192.168.0.124:10000/hrmsapplication/authentication/refreshToken', {
                 refreshToken,
                 employeeId: localStorage.getItem('EmpId')
             }, {
