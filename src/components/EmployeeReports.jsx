@@ -100,35 +100,38 @@ const EmployeeReports = () => {
 
       {/* Show the table if data is fetched */}
       {isDataFetched && (
-        <table className="min-w-full bg-white border border-gray-300 shadow-md rounded-lg">
-          <thead>
-            <tr>
-              <th className="px-6 py-4 border-b">Employee ID</th>
-              <th className="px-6 py-4 border-b">Employee Name</th>
-              <th className="px-6 py-4 border-b">Attendance Date</th>
-              <th className="px-6 py-4 border-b">In Time</th>
-              <th className="px-6 py-4 border-b">Out Time</th>
-              <th className="px-6 py-4 border-b">Total Working Hours</th>
-              <th className="px-6 py-4 border-b">Type</th>
+  <div className="overflow-x-auto">
+    <table className="min-w-full bg-white border border-gray-300 shadow-md rounded-lg">
+      <thead>
+        <tr className="">
+          <th className="px-4 sm:px-6 py-3 border-b">Employee ID</th>
+          <th className="px-4 sm:px-6 py-3 border-b">Employee Name</th>
+          <th className="px-4 sm:px-6 py-3 border-b">Attendance Date</th>
+          <th className="px-4 sm:px-6 py-3 border-b">In Time</th>
+          <th className="px-4 sm:px-6 py-3 border-b">Out Time</th>
+          <th className="px-4 sm:px-6 py-3 border-b">Total Working Hours</th>
+          <th className="px-4 sm:px-6 py-3 border-b">Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        {employees.map((employee) =>
+          employee.attendanceDTOList.map((attendance) => (
+            <tr key={attendance.id} className="hover:bg-gray-100 text-center">
+              <td className="px-4 sm:px-6 py-3 border-b">{employee.employeeId}</td>
+              <td className="px-4 sm:px-6 py-3 border-b">{employee.employeeName}</td>
+              <td className="px-4 sm:px-6 py-3 border-b">{attendance.attendanceDate}</td>
+              <td className="px-4 sm:px-6 py-3 border-b">{attendance.inTime}</td>
+              <td className="px-4 sm:px-6 py-3 border-b">{attendance.outTime}</td>
+              <td className="px-4 sm:px-6 py-3 border-b">{attendance.totalWorkingHours} hours</td>
+              <td className="px-4 sm:px-6 py-3 border-b">{attendance.type}</td>
             </tr>
-          </thead>
-          <tbody>
-            {employees.map((employee) => (
-              employee.attendanceDTOList.map((attendance) => (
-                <tr key={attendance.id}>
-                  <td className="px-6 py-4 border-b">{employee.employeeId}</td>
-                  <td className="px-6 py-4 border-b">{employee.employeeName}</td>
-                  <td className="px-6 py-4 border-b">{attendance.attendanceDate}</td>
-                  <td className="px-6 py-4 border-b">{attendance.inTime}</td>
-                  <td className="px-6 py-4 border-b">{attendance.outTime}</td>
-                  <td className="px-6 py-4 border-b">{attendance.totalWorkingHours} hours</td>
-                  <td className="px-6 py-4 border-b">{attendance.type}</td>
-                </tr>
-              ))
-            ))}
-          </tbody>
-        </table>
-      )}
+          ))
+        )}
+      </tbody>
+    </table>
+  </div>
+)}
+
     </div>
   );
 };

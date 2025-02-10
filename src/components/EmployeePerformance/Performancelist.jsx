@@ -86,53 +86,56 @@ const EmployeeTable = () => {
         </div>
       </div>
 
-      <table className="min-w-full bg-white border border-gray-200">
-        <thead>
-          <tr className="bg-gray-200">
-            <th className="py-3 px-4 border-b">Employee ID</th>
-            <th className="py-2 px-4 border-b">Employee Name</th>
-            <th className="py-2 px-4 border-b">Designation</th>
-            <th className="py-2 px-4 border-b">Action</th>
+      <div className="overflow-x-auto">
+  <table className="min-w-full bg-white border border-gray-200">
+    <thead>
+      <tr className="bg-gray-200 text-xs sm:text-sm">
+        <th className="py-2 sm:py-3 px-2 sm:px-4 border-b">Employee ID</th>
+        <th className="py-2 sm:py-3 px-2 sm:px-4 border-b">Employee Name</th>
+        <th className="py-2 sm:py-3 px-2 sm:px-4 border-b">Designation</th>
+        <th className="py-2 sm:py-3 px-2 sm:px-4 border-b">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {filteredEmployees.length > 0 ? (
+        filteredEmployees.map((employee) => (
+          <tr key={employee.employeeId} className="hover:bg-gray-100 text-center text-xs sm:text-sm">
+            <td className="py-2 px-2 sm:px-4 border-b">{employee.employeeId}</td>
+            <td className="py-2 px-2 sm:px-4 border-b">{employee.employeeName}</td>
+            <td className="py-2 px-2 sm:px-4 border-b">{employee.designation}</td>
+            <td className="py-2 px-2 sm:px-4 border-b">
+              <button
+                className="text-blue-500 hover:underline text-xs sm:text-sm"
+                onClick={() => handleViewClick(employee.employeeId)}
+              >
+                View
+              </button>
+            </td>
           </tr>
-        </thead>
-        <tbody>
-          {filteredEmployees.length > 0 ? (
-            filteredEmployees.map((employee) => (
-              <tr key={employee.employeeId} className="hover:bg-gray-100 text-center">
-                <td className="py-2 px-4 border-b">{employee.employeeId}</td>
-                <td className="py-2 px-4 border-b">{employee.employeeName}</td>
-                <td className="py-2 px-4 border-b">{employee.designation}</td>
-                <td className="py-2 px-4 border-b">
-                  <button
-                    className="text-blue-500 hover:underline"
-                    onClick={() => handleViewClick(employee.employeeId)}
-                  >
-                    View
-                  </button>
-                </td>
-              </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan="4" className="py-2 px-4 border-b text-center">
-                No employees found.
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+        ))
+      ) : (
+        <tr>
+          <td colSpan="4" className="py-2 px-4 border-b text-center text-xs sm:text-sm">
+            No employees found.
+          </td>
+        </tr>
+      )}
+    </tbody>
+  </table>
+</div>
+
 
       {/* Pagination Controls */}
       <div className="flex justify-between mt-4">
         <button
-          className="bg-gray-200 text-orange-400 px-4 py-2 rounded"
+          className="bg-blue-950 text-white px-4 py-2 rounded"
           onClick={() => setPageNumber((prev) => Math.max(prev - 1, 0))} // Ensure page number doesn't go below 0
           disabled={pageNumber === 0}
         >
           Previous
         </button>
         <button
-          className="bg-gray-200 text-orange-400 px-4 py-2 rounded"
+          className="bg-blue-950 text-white px-4 py-2 rounded"
           onClick={() => setPageNumber((prev) => prev + 1)}
         >
           Next

@@ -89,18 +89,21 @@ const ManagerEmployee = () => {
     navigate(-1); 
   };
   return (
-    <div className="container mx-auto p-6">
-       <NavLink
-         to="#"
-        onClick={handleBackNavigation}
-        className="flex items-center justify-start px-2 py-2 overflow-x-auto border-2 bg-blue-950 rounded-md w-40 ml-5 mb-5 mt-5">
-        <FaLessThan className="text-white mr-2" />
-        <button>
-          <span className="text font-semibold text-white">Previous Page</span>
-        </button>
-      </NavLink>
+   <div className="container mx-auto p-4">
+  {/* Back Navigation */}
+  <NavLink
+    to="#"
+    onClick={handleBackNavigation}
+    className="flex items-center justify-start px-2 py-2 border-2 bg-blue-950 rounded-md w-full sm:w-40 ml-0 sm:ml-5 mb-5 mt-5"
+  >
+    <FaLessThan className="text-white mr-2" />
+    <button>
+      <span className="text font-semibold text-white">Previous Page</span>
+    </button>
+  </NavLink>
 
-      <div className="flex justify-center items-center mb-4 space-x-4">
+  {/* Search Bar */}
+  <div className="flex justify-center items-center mb-4 space-x-4">
         <div className="flex items-right border rounded-lg">
           <input
             type="text"
@@ -115,58 +118,62 @@ const ManagerEmployee = () => {
         </div>
       </div>
 
-      <table className="min-w-full bg-white border border-gray-200">
-        <thead>
-          <tr className="bg-gray-200">
-            <th className="py-3 px-4 border-b">Employee ID</th>
-            <th className="py-2 px-4 border-b">Employee Name</th>
-            <th className="py-2 px-4 border-b">Designation</th>
-            <th className="py-2 px-4 border-b">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredEmployees.length > 0 ? (
-            filteredEmployees.map((employee) => (
-              <tr key={employee.employeeId} className="hover:bg-gray-100 text-center">
-                <td className="py-2 px-4 border-b">{employee.employeeId}</td>
-                <td className="py-2 px-4 border-b">{employee.employeeName}</td>
-                <td className="py-2 px-4 border-b">{employee.designation}</td>
-                <td className="py-2 px-4 border-b">
-                  <button
-                    className="text-blue-500 hover:underline"
-                    onClick={() => handleViewClick(employee.employeeId)} 
-                  >
-                    View
-                  </button>
-                </td>
-              </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan="4" className="py-2 px-4 border-b text-center">
-                No employees found.
+  {/* Table Container with Horizontal Scroll for Mobile */}
+  <div className="overflow-x-auto">
+    <table className="min-w-full bg-white border border-gray-200">
+      <thead>
+        <tr className="bg-gray-200">
+          <th className="py-3 px-4 border-b">Employee ID</th>
+          <th className="py-2 px-4 border-b">Employee Name</th>
+          <th className="py-2 px-4 border-b">Designation</th>
+          <th className="py-2 px-4 border-b">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {filteredEmployees.length > 0 ? (
+          filteredEmployees.map((employee) => (
+            <tr key={employee.employeeId} className="hover:bg-gray-100 text-center">
+              <td className="py-2 px-4 border-b">{employee.employeeId}</td>
+              <td className="py-2 px-4 border-b">{employee.employeeName}</td>
+              <td className="py-2 px-4 border-b">{employee.designation}</td>
+              <td className="py-2 px-4 border-b">
+                <button
+                  className="text-blue-500 hover:underline"
+                  onClick={() => handleViewClick(employee.employeeId)}
+                >
+                  View
+                </button>
               </td>
             </tr>
-          )}
-        </tbody>
-      </table>
+          ))
+        ) : (
+          <tr>
+            <td colSpan="4" className="py-2 px-4 border-b text-center">
+              No employees found.
+            </td>
+          </tr>
+        )}
+      </tbody>
+    </table>
+  </div>
 
-      <div className="flex justify-between mt-4">
+  <div className="flex justify-between mt-4">
         <button
-          className="bg-gray-200 text-orange-400 px-4 py-2 rounded"
+          className="bg-blue-950 text-white px-4 py-2 rounded"
           onClick={() => setPageNumber((prev) => prev - 1)}
           disabled={pageNumber === 0}
         >
           Previous
         </button>
         <button
-          className="bg-gray-200 text-orange-400 px-4 py-2 rounded"
+          className="bg-blue-950 text-white px-4 py-2 rounded"
           onClick={() => setPageNumber((prev) => prev + 1)}
         >
           Next
         </button>
       </div>
-    </div>
+</div>
+
   );
 };
 

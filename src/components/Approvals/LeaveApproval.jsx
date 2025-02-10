@@ -140,209 +140,226 @@ const totalAllPages = Math.ceil(responses.length / rowsPerPage);
 return (
     <div className="container mx-auto p-4">
       <div className="flex justify-between items-center mb-4">
-        <NavLink className="flex items-center justify-start px-4 py-2 border rounded-md bg-gray-200 hover:bg-gray-300 transition" to='/ApprovalMaster'>
-          <FaLessThan className="text-orange-500 mr-2" />
-          <span className="font-semibold text-orange-500">Previous Page</span>
+        <NavLink className="flex items-center justify-start lg:px-4 lg:py-2 px-3 py-2 lg:text-lg text-xs border rounded-md bg-blue-950 hover:bg-gray-300 transition" to='/ApprovalMaster'>
+          <FaLessThan className="text-white mr-2" />
+          <span className="font-semibold text-white">Previous Page</span>
         </NavLink>
         <NavLink to={`/LeaveStatus/${employeeId}`} 
-  className="flex items-center justify-start px-4 py-2 border rounded-md bg-gray-200 hover:bg-gray-300 transition"
+  className="flex items-center justify-start lg:px-4 lg:py-2  px-3 py-2 lg:text-lg text-xs border rounded-md bg-blue-950 hover:bg-gray-300 transition"
 >
-  <span className="font-semibold text-orange-500">My Status</span>
+  <span className="font-semibold text-white">My Status</span>
 </NavLink>
 
-        <button className="flex items-center justify-center px-4 py-2 border rounded-md bg-gray-200 hover:bg-gray-300 transition" to='/App'>
-          <span className="font-semibold text-orange-500">Export</span>
+        <button className="flex items-center justify-center lg:px-4 lg:py-2  px-3 py-2 lg:text-lg text-xs border rounded-md bg-blue-950 hover:bg-gray-300 transition" to='/App'>
+          <span className="font-semibold text-white">Export</span>
         </button>
       </div>
   
       <div className='mt-5'>
-        <div className='border rounded-lg shadow-md p-4 bg-white'>
-          <div className="flex justify-between items-center mb-4">
-            <h1 className="font-bold text-xl">Leaves Approvals/Pending</h1>
-            <div className="relative">
-              <FaSearch className="absolute right-2 top-3 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Search all fields..."
-                value={pendingSearch}
-                onChange={(e) => setPendingSearch(e.target.value)}
-                className="border border-gray-600 p-1 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-orange-500 transition duration-200 w-40"
-              />
-            </div>
-          </div>
-          <table className="w-full table-auto border-collapse">
-            <thead>
-              <tr className="bg-gray-300">
-                <th className="border border-solid border-gray-400 p-1 text-center">
-                <select onChange={(e) => setPendingFilters({ ...pendingFilters, employeeId: e.target.value })} className="bg-gray-300 p-1 rounded">
-    <option value="">Employee ID</option>
-    {uniqueEmployeeIds.map(id => (
-        <option key={id} value={id}>{id}</option>
-    ))}
-</select>
-                </th>
-                <th className="border border-solid border-gray-400 p-1 text-center">
-                  <select onChange={(e) => setPendingFilters({ ...pendingFilters, name: e.target.value })} className="bg-gray-300 p-1 rounded">
-                    <option value="">Employee Name</option>
-                    {uniqueNames.map(name => (
-                      <option key={name} value={name}>{name}</option>
-                    ))}
-                  </select>
-                </th>
-                <th className="border border-solid border-gray-400 p-1 text-center">
-                  <select onChange={(e) => setPendingFilters({ ...pendingFilters, type: e.target.value })} className="bg-gray-300 p-1 rounded">
-                    <option value="">Leave Type</option>
-                    {uniqueTypes.map(type => (
-                      <option key={type} value={type}>{type}</option>
-                    ))}
-                  </select>
-                </th>
-                <th className="border border-solid border-gray-400 p-1 text-center">From Date</th>
-                <th className="border border-solid border-gray-400 p-1 text-center">To Date</th>
-                <th className="border border-solid border-gray-400 p-1 text-center">Applied Date</th>
+      <div className='border rounded-lg shadow-md p-4 bg-white'>
+  <div className="flex flex-col sm:flex-row justify-between items-center mb-4">
+    <h1 className="font-bold text-xl">Leaves Approvals/Pending</h1>
+    <div className="relative w-full sm:w-40 mt-2 sm:mt-0">
+      <input
+        type="text"
+        placeholder="Search all fields..."
+        value={allSearch}
+        onChange={(e) => setAllSearch(e.target.value)}
+        className="border border-gray-600 p-2 rounded-lg shadow w-full focus:outline-none focus:ring-2 focus:ring-orange-500 transition duration-200"
+      />
+      <FaSearch className="absolute right-3 top-3 text-gray-500" />
+    </div>
+  </div>
 
-                <th className="border border-solid border-gray-400 p-1 text-center">Actions</th>
-                <th className="border border-solid border-gray-400 p-1 text-center">Comments</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredRequests.map(req => (
-                <tr key={req.id} className="text-center">
-                  <td className="border border-solid border-gray-400 p-1">{req.employeeId}</td>
-                  <td className="border border-solid border-gray-400 p-1">{req.employeeName}</td>
-                  <td className="border border-solid border-gray-400 p-1">{req.leaveName}</td>
-                  <td className="border border-solid border-gray-400 p-1">{req.startDate}</td>
-                  <td className="border border-solid border-gray-400 p-1">{req.endDate}</td>
-                  <td className="border border-solid border-gray-400 p-1">{req.appliedDate}</td>
-
-                  <td className="border border-solid border-gray-400 p-1">
-                    <button onClick={() => handleAction(req, true)} className="p-1">
-                      <FaCheckSquare className="text-green-600" size={22} />
-                    </button>
-                    <button onClick={() => handleAction(req, false)} className="p-1">
-                      <FaWindowClose className="text-red-600" size={22} />
-                    </button>
-                  </td>
-                  <td className="border border-solid border-gray-400 p-1">{req.comments}</td>
-                </tr>
+  <div className="overflow-x-auto">
+    <table className="w-full table-auto border-collapse">
+      <thead>
+        <tr className="bg-gray-300">
+          <th className="border border-solid border-gray-400 p-1 text-center">
+            <select
+              onChange={(e) => setPendingFilters({ ...pendingFilters, employeeId: e.target.value })}
+              className="bg-gray-300 p-1 rounded"
+            >
+              <option value="">Employee ID</option>
+              {uniqueEmployeeIds.map(id => (
+                <option key={id} value={id}>{id}</option>
               ))}
-            </tbody>
-          </table>
-          <div className="flex items-center justify-center mt-4">
-  <span
-    onClick={() => {
-      if (pendingPage > 0) setPendingPage(pendingPage - 1);
-    }}
-    className={`cursor-pointer ${pendingPage === 0 ? 'text-gray-400' : 'text-gray-600 hover:text-gray-600'} text-lg font-bold mr-2`}
-  >
-    &lt;
-  </span>
-  <span className="font-semibold text-sm">
-    Page {pendingPage + 1} of {totalPendingPages}
-  </span>
-  <span
-    onClick={() => {
-      if (pendingPage < totalPendingPages - 1) setPendingPage(pendingPage + 1);
-    }}
-    className={`cursor-pointer ${pendingPage === totalPendingPages - 1 ? 'text-gray-400' : 'text-gray-600 hover:text-gray-600'} text-lg font-bold ml-2`}
-  >
-    &gt;
-  </span>
+            </select>
+          </th>
+          <th className="border border-solid border-gray-400 p-1 text-center">
+            <select
+              onChange={(e) => setPendingFilters({ ...pendingFilters, name: e.target.value })}
+              className="bg-gray-300 p-1 rounded"
+            >
+              <option value="">Employee Name</option>
+              {uniqueNames.map(name => (
+                <option key={name} value={name}>{name}</option>
+              ))}
+            </select>
+          </th>
+          <th className="border border-solid border-gray-400 p-1 text-center">
+            <select
+              onChange={(e) => setPendingFilters({ ...pendingFilters, type: e.target.value })}
+              className="bg-gray-300 p-1 rounded"
+            >
+              <option value="">Leave Type</option>
+              {uniqueTypes.map(type => (
+                <option key={type} value={type}>{type}</option>
+              ))}
+            </select>
+          </th>
+          <th className="border border-solid border-gray-400 p-1 text-center">From Date</th>
+          <th className="border border-solid border-gray-400 p-1 text-center">To Date</th>
+          <th className="border border-solid border-gray-400 p-1 text-center">Applied Date</th>
+          <th className="border border-solid border-gray-400 p-1 text-center">Actions</th>
+          <th className="border border-solid border-gray-400 p-1 text-center">Comments</th>
+        </tr>
+      </thead>
+      <tbody>
+        {filteredRequests.map(req => (
+          <tr key={req.id} className="text-center">
+            <td className="border border-solid border-gray-400 p-1">{req.employeeId}</td>
+            <td className="border border-solid border-gray-400 p-1">{req.employeeName}</td>
+            <td className="border border-solid border-gray-400 p-1">{req.leaveName}</td>
+            <td className="border border-solid border-gray-400 p-1">{req.startDate}</td>
+            <td className="border border-solid border-gray-400 p-1">{req.endDate}</td>
+            <td className="border border-solid border-gray-400 p-1">{req.appliedDate}</td>
+            <td className="border border-solid border-gray-400 p-1">
+              <button onClick={() => handleAction(req, true)} className="p-1">
+                <FaCheckSquare className="text-green-600" size={22} />
+              </button>
+              <button onClick={() => handleAction(req, false)} className="p-1">
+                <FaWindowClose className="text-red-600" size={22} />
+              </button>
+            </td>
+            <td className="border border-solid border-gray-400 p-1">{req.comments}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  {/* Pagination - Left & Right Buttons in Mobile */}
+  <div className="flex justify-between items-center mt-4">
+    <button
+      onClick={() => {
+        if (allPage > 0) setAllPage(allPage - 1);
+      }}
+      className={`p-2 rounded-lg text-lg font-bold ${allPage === 0 ? 'text-gray-400 cursor-not-allowed' : 'text-gray-600 hover:text-gray-800'}`}
+      disabled={allPage === 0}
+    >
+      &lt;
+    </button>
+    <span className="font-semibold text-sm">
+      Page {allPage + 1} of {totalAllPages}
+    </span>
+    <button
+      onClick={() => {
+        if (allPage < totalAllPages - 1) setAllPage(allPage + 1);
+      }}
+      className={`p-2 rounded-lg text-lg font-bold ${allPage === totalAllPages - 1 ? 'text-gray-400 cursor-not-allowed' : 'text-gray-600 hover:text-gray-800'}`}
+      disabled={allPage === totalAllPages - 1}
+    >
+      &gt;
+    </button>
+  </div>
 </div>
 
-
-        </div>
   
         <hr className="my-6 border-red-900 mt-5" />
   
         <div className='border rounded-lg shadow-md p-4 bg-white'>
-          <div className="flex justify-between items-center mb-4">
-            <h1 className="font-bold text-xl">Approved/Rejected Requests</h1>
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Search all fields..."
-                value={allSearch}
-                onChange={(e) => setAllSearch(e.target.value)}
-                className="border border-gray-600 p-1 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-orange-500 transition duration-200 w-40"
-              />
-              <FaSearch className="absolute right-2 top-2 text-gray-500" />
-            </div>
-          </div>
-          <table className="w-full table-auto border-collapse">
-            <thead>
-              <tr className="bg-gray-300">
-                <th className="border border-solid border-gray-400 p-1 text-center">
-                <select onChange={(e) => setAllFilters({ ...allFilters, id: e.target.value })} className="bg-gray-300 p-1 rounded">
-    <option value="">Employee ID</option>
-    {[...new Set(responses.map(req => req.employeeId))].map(id => (
-        <option key={id} value={id}>{id}</option>
-    ))}
-</select>
-                </th>
-                <th className="border border-solid border-gray-400 p-1 text-center">
-                  <select onChange={(e) => setAllFilters({ ...allFilters, name: e.target.value })} className="bg-gray-300 p-1 rounded">
-                    <option value="">Employee Name</option>
-                    {[...new Set(responses.map(req => req.employeeName))].map(name => (
-                      <option key={name} value={name}>{name}</option>
-                    ))}
-                  </select>
-                </th>
-                <th className="border border-solid border-gray-400 p-1 text-center">
-                  <select onChange={(e) => setAllFilters({ ...allFilters, type: e.target.value })} className="bg-gray-300 p-1 rounded">
-                    <option value="">Leave Type</option>
-                    {[...new Set(responses.map(req => req.leaveName))].map(type => (
-                      <option key={type} value={type}>{type}</option>
-                    ))}
-                  </select>
-                </th>
-                <th className="border border-solid border-gray-400 p-1 text-center">From Date</th>
-                <th className="border border-solid border-gray-400 p-1 text-center">To Date</th>
-                <th className="border border-solid border-gray-400 p-1 text-center">Applied Date</th>
+  <div className="flex flex-col sm:flex-row justify-between items-center mb-4">
+    <h1 className="font-bold text-lg sm:text-xl">Approved/Rejected Requests</h1>
+    <div className="relative w-full sm:w-40 mt-2 sm:mt-0">
+      <input
+        type="text"
+        placeholder="Search all fields..."
+        value={allSearch}
+        onChange={(e) => setAllSearch(e.target.value)}
+        className="border border-gray-600 p-2 rounded-lg shadow w-full focus:outline-none focus:ring-2 focus:ring-orange-500 transition duration-200"
+      />
+      <FaSearch className="absolute right-3 top-3 text-gray-500" />
+    </div>
+  </div>
 
-                <th className="border border-solid border-gray-400 p-1 text-center">Status</th>
-                <th className="border border-solid border-gray-400 p-1 text-center">Comments</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredResponses.map(req => (
-                <tr key={req.id} className="text-center">
-                  <td className="border border-solid border-gray-400 p-1">{req.employeeId}</td>
-                  <td className="border border-solid border-gray-400 p-1">{req.employeeName}</td>
-                  <td className="border border-solid border-gray-400 p-1">{req.leaveName}</td>
-                  <td className="border border-solid border-gray-400 p-1">{req.startDate}</td>
-                  <td className="border border-solid border-gray-400 p-1">{req.endDate}</td>
-                  <td className="border border-solid border-gray-400 p-1">{req.appliedDate}</td>
-                  <td className="border border-solid border-gray-400 p-1">{req.status}</td>
-                  <td className="border border-solid border-gray-400 p-1">{req.comments}</td>
-                </tr>
+  <div className="overflow-x-auto">
+    <table className="w-full table-auto border-collapse">
+      <thead>
+        <tr className="bg-gray-300">
+          <th className="border border-solid border-gray-400 p-1 text-center">
+            <select onChange={(e) => setAllFilters({ ...allFilters, id: e.target.value })} className="bg-gray-300 p-1 rounded">
+              <option value="">Employee ID</option>
+              {[...new Set(responses.map(req => req.employeeId))].map(id => (
+                <option key={id} value={id}>{id}</option>
               ))}
-            </tbody>
-          </table>
-          <div className="flex items-center justify-center mt-4">
-  <span
-    onClick={() => {
-      if (allPage > 0) setAllPage(allPage - 1);
-    }}
-    className={`cursor-pointer ${allPage === 0 ? 'text-gray-400' : 'text-gray-600 hover:text-gray-600'} text-lg font-bold mr-2`}
-  >
-    &lt;
-  </span>
-  <span className="font-semibold text-sm">
-    Page {allPage + 1} of {totalAllPages}
-  </span>
-  <span
-    onClick={() => {
-      if (allPage < totalAllPages - 1) setAllPage(allPage + 1);
-    }}
-    className={`cursor-pointer ${allPage === totalAllPages - 1 ? 'text-gray-400' : 'text-gray-600 hover:text-gray-600'} text-lg font-bold ml-2`}
-  >
-    &gt;
-  </span>
+            </select>
+          </th>
+          <th className="border border-solid border-gray-400 p-1 text-center">
+            <select onChange={(e) => setAllFilters({ ...allFilters, name: e.target.value })} className="bg-gray-300 p-1 rounded">
+              <option value="">Employee Name</option>
+              {[...new Set(responses.map(req => req.employeeName))].map(name => (
+                <option key={name} value={name}>{name}</option>
+              ))}
+            </select>
+          </th>
+          <th className="border border-solid border-gray-400 p-1 text-center">
+            <select onChange={(e) => setAllFilters({ ...allFilters, type: e.target.value })} className="bg-gray-300 p-1 rounded">
+              <option value="">Leave Type</option>
+              {[...new Set(responses.map(req => req.leaveName))].map(type => (
+                <option key={type} value={type}>{type}</option>
+              ))}
+            </select>
+          </th>
+          <th className="border border-solid border-gray-400 p-1 text-center">From Date</th>
+          <th className="border border-solid border-gray-400 p-1 text-center">To Date</th>
+          <th className="border border-solid border-gray-400 p-1 text-center">Applied Date</th>
+          <th className="border border-solid border-gray-400 p-1 text-center">Status</th>
+          <th className="border border-solid border-gray-400 p-1 text-center">Comments</th>
+        </tr>
+      </thead>
+      <tbody>
+        {filteredResponses.map(req => (
+          <tr key={req.id} className="text-center">
+            <td className="border border-solid border-gray-400 p-1">{req.employeeId}</td>
+            <td className="border border-solid border-gray-400 p-1">{req.employeeName}</td>
+            <td className="border border-solid border-gray-400 p-1">{req.leaveName}</td>
+            <td className="border border-solid border-gray-400 p-1">{req.startDate}</td>
+            <td className="border border-solid border-gray-400 p-1">{req.endDate}</td>
+            <td className="border border-solid border-gray-400 p-1">{req.appliedDate}</td>
+            <td className="border border-solid border-gray-400 p-1">{req.status}</td>
+            <td className="border border-solid border-gray-400 p-1">{req.comments}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <div className="flex justify-between items-center mt-4">
+    <button
+      onClick={() => {
+        if (allPage > 0) setAllPage(allPage - 1);
+      }}
+      className={`p-2 rounded-lg text-lg font-bold ${allPage === 0 ? 'text-gray-400 cursor-not-allowed' : 'text-gray-600 hover:text-gray-800'}`}
+      disabled={allPage === 0}
+    >
+      &lt;
+    </button>
+    <span className="font-semibold text-sm">
+      Page {allPage + 1} of {totalAllPages}
+    </span>
+    <button
+      onClick={() => {
+        if (allPage < totalAllPages - 1) setAllPage(allPage + 1);
+      }}
+      className={`p-2 rounded-lg text-lg font-bold ${allPage === totalAllPages - 1 ? 'text-gray-400 cursor-not-allowed' : 'text-gray-600 hover:text-gray-800'}`}
+      disabled={allPage === totalAllPages - 1}
+    >
+      &gt;
+    </button>
+  </div>
 </div>
 
-
-        </div>
 
         {showPopup && (
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
