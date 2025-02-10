@@ -185,7 +185,7 @@ const TimeEntryForm = () => {
               <div className="flex items-end">
                 <button
                   onClick={handleTeamTimeSheetClick}
-                  className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
+                  className="bg-blue-500 text-white lg:py-2 lg:px-4 px-4 py-2 rounded-md hover:bg-blue-600"
                 >
                   See my Reportees
                 </button>
