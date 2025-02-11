@@ -175,17 +175,17 @@ const TimeEntryForm = () => {
             <div className="flex items-end">
               <button
                 type="submit"
-                className="bg-blue-500 text-white py-2 px-4 hover:bg-blue-700 rounded-md"
+                className="bg-blue-500 text-white text-xs lg:text-lg py-2 lg:px-4 px-3 hover:bg-blue-700 rounded-md"
               >
                 {loading ? 'Loading...' : 'Submit'}
               </button>
             </div>
 
             {(userRole === "ROLE_MANAGER" || userRole === "ROLE_HR") && (
-              <div className="flex items-end">
+              <div className="flex items-end pr-2">
                 <button
                   onClick={handleTeamTimeSheetClick}
-                  className="bg-blue-500 text-white lg:py-2 lg:px-4 px-4 py-2 rounded-md hover:bg-blue-600"
+                  className="bg-blue-500 text-white pr-2 text-xs lg:text-lg lg:py-2 lg:px-4 px-3 py-2 rounded-md hover:bg-blue-600"
                 >
                   See my Reportees
                 </button>
