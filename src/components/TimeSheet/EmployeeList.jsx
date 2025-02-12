@@ -82,57 +82,62 @@ const EmployeeList = () => {
   };
 
   return (
-    <div className="p-8 bg-gray-100 min-h-screen">
-      <NavLink
-        onClick={handleback}
-        className="flex items-center justify-start px-2 py-2 overflow-x-auto border-2 bg-blue-950 rounded-md w-40 ml-5 mb-5 mt-5">
-        <FaLessThan className="text-white mr-2" />
-        <button>
-          <span className="text font-semibold text-white">Previous Page</span>
-        </button>
-      </NavLink>
-      <h1 className="text-2xl font-bold mb-6">Employee List</h1>
-      <table className="min-w-full bg-white border border-gray-300">
-        <thead>
-          <tr className="bg-blue-500 text-white">
-            <th className="p-2">Employee ID</th>
-            <th className="p-2">Employee Name</th>
-            <th className="p-2">Action</th>
-            <th className="p-2">Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {employees.length > 0 ? (
-            employees.map((employee) => (
-              <tr key={employee.employeeId} className="text-center hover:bg-gray-100">
-                <td className="p-2 border">{employee.employeeId}</td>
-                <td className="p-2 border">{employee.employeeName}</td>
-                <td className="p-2 border">
-                  <button
-                    onClick={() => handleViewClick(employee.employeeId)}
-                    className="text-blue-500 hover:underline"
-                  >
-                    View
-                  </button>
-                </td>
-                <td className="p-2 border">
-                  <button
-                    onClick={() => handleStatus(employee.employeeId)}
-                    className="text-blue-500 hover:underline"
-                  >
-                    View Status
-                  </button>
-                </td>
-              </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan="3" className="p-2 text-center">No employees found</td>
+    <div className="p-4 bg-gray-100 min-h-screen">
+  <NavLink
+    onClick={handleback}
+    className="flex items-center justify-start px-2 py-2 border-2 bg-blue-950 rounded-md w-40 mb-5 mt-5">
+    <FaLessThan className="text-white mr-2" />
+    <button>
+      <span className="text font-semibold text-white">Previous Page</span>
+    </button>
+  </NavLink>
+  <h1 className="text-xl font-bold mb-4 text-center">Employee List</h1>
+  
+  {/* Responsive Table Wrapper */}
+  <div className="overflow-x-auto">
+    <table className="min-w-full bg-white border border-gray-300">
+      <thead>
+        <tr className="bg-blue-500 text-white">
+          <th className="p-2 text-sm">Employee ID</th>
+          <th className="p-2 text-sm">Employee Name</th>
+          <th className="p-2 text-sm">Action</th>
+          <th className="p-2 text-sm">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {employees.length > 0 ? (
+          employees.map((employee) => (
+            <tr key={employee.employeeId} className="text-center hover:bg-gray-100">
+              <td className="p-2 border text-xs">{employee.employeeId}</td>
+              <td className="p-2 border text-xs">{employee.employeeName}</td>
+              <td className="p-2 border text-xs">
+                <button
+                  onClick={() => handleViewClick(employee.employeeId)}
+                  className="text-blue-500 hover:underline"
+                >
+                  View
+                </button>
+              </td>
+              <td className="p-2 border text-xs">
+                <button
+                  onClick={() => handleStatus(employee.employeeId)}
+                  className="text-blue-500 hover:underline"
+                >
+                  View Status
+                </button>
+              </td>
             </tr>
-          )}
-        </tbody>
-      </table>
-    </div>
+          ))
+        ) : (
+          <tr>
+            <td colSpan="4" className="p-2 text-center text-sm">No employees found</td>
+          </tr>
+        )}
+      </tbody>
+    </table>
+  </div>
+</div>
+
   );
 };
 

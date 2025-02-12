@@ -61,10 +61,10 @@ function CreateQuestion() {
   const handleEdit = (questionData) => {
     setEditingQuestion(questionData); // Set the question being edited
     setPopUp(true); // Open the popup
-  
+
     // Pre-fill question field
     setQuestion(questionData.question);
-  
+
     // Pre-fill options
     setOptions({
       optionA: questionData.options[0].option,
@@ -72,10 +72,10 @@ function CreateQuestion() {
       optionC: questionData.options[2].option,
       optionD: questionData.options[3].option,
     });
-  
+
     // Find the correct option
     const correctOption = questionData.options.find(option => option.correct);
-    
+
     // Set the correct option based on the one marked as correct
     if (correctOption) {
       switch (correctOption.option) {
@@ -98,7 +98,7 @@ function CreateQuestion() {
       setCorrectOption(''); // In case no option is marked as correct, which should not happen
     }
   };
-  
+
 
   const validateForm = () => {
     if (!question || !options.optionA || !options.optionB || !options.optionC || !options.optionD || !correctOption) {
@@ -111,9 +111,9 @@ function CreateQuestion() {
 
   const handleSave = async () => {
     if (!validateForm()) return;
-  
+
     setLoading(true);
-  
+
     const data = {
       examId,
       // Only add questionId if we're editing an existing question
@@ -126,7 +126,7 @@ function CreateQuestion() {
         { option: options.optionD, correct: correctOption === 'D' }
       ],
     };
-  
+
     try {
       let response;
       if (editingQuestion) {
@@ -136,13 +136,13 @@ function CreateQuestion() {
         // Create a new question (this would still be a POST request as usual)
         response = await axiosInstance.post('hrmsapplication/exam/addquoestions', data);
       }
-  
+
       if (response.status === 200) {
         setPopUp(false);
-  
+
         // Reset form after successful save
         resetForm();
-  
+
         // Fetch updated questions
         const updatedResponse = await axiosInstance.get(`hrmsapplication/exam/get-questions/${examId}`);
         setQuestions(updatedResponse.data);
@@ -155,12 +155,12 @@ function CreateQuestion() {
       setLoading(false);
     }
   };
-  
+
 
   const handleDelete = async (questionId) => {
     try {
       const response = await axiosInstance.delete(`hrmsapplication/exam/deleteQuestionId/${questionId}`);
-      
+
       if (response.status === 204) {
         // Since the response body is empty, we just need to remove the question from the state
         setQuestions(prevQuestions => prevQuestions.filter(q => q.questionId !== questionId));
@@ -173,22 +173,22 @@ function CreateQuestion() {
       alert('Error occurred while deleting the question');
     }
   };
-  
+
 
   return (
     <div className="container mx-auto p-6">
-      <div className='flex flex-row justify-between'>
+      <div className='flex flex-row justify-between gap-4'>
         <NavLink
           to='/createexam'
-          className="flex items-center justify-start px-2 py-2 overflow-x-auto border-2 border-gray-800 rounded-md w-40 ml-5 mb-5 mt-5">
-          <FaLessThan className="text-orange-500 mr-2" />
+          className="flex items-center justify-start lg:px-2 lg:py-2  overflow-x-auto border-2 bg-blue-950 border-gray-800 rounded-md w-40 ml-5 mb-5 mt-5">
+          <FaLessThan className="text-white mr-2" />
           <button>
-            <span className="text font-semibold text-orange-500">Previous Page</span>
+            <span className="text font-semibold text-white">Previous Page</span>
           </button>
         </NavLink>
-        <button 
-          onClick={handleOpenPopup} 
-          className="flex items-center justify-center px-2 py-2 overflow-x-auto border-2 border-gray-800 rounded-md w-40  mb-5 mt-5">
+        <button
+          onClick={handleOpenPopup}
+          className="flex items-center bg-blue-950 text-white justify-center px-2 py-2 overflow-x-auto border-2 border-gray-800 rounded-md w-40  mb-5 mt-5">
           Create Question
         </button>
       </div>
@@ -203,19 +203,19 @@ function CreateQuestion() {
               <div className="font-medium text-xl">{questionData.question}</div>
               <div className="mt-2">
                 {questionData.options.map((option, optIndex) => (
-                  <div 
+                  <div
                     key={optIndex}
                     className={`py-2 px-4 rounded mt-2 ${option.correct ? 'bg-green-100 text-green-700' : 'bg-gray-100'}`} >
                     {option.option}
                   </div>
                 ))}
               </div>
-              <button 
+              <button
                 onClick={() => handleDelete(questionData.questionId)} // Handle delete action
                 className="mt-2 p-2 bg-red-500 text-white rounded hover:bg-red-600">
                 <FaTrashAlt /> {/* Delete icon */}
               </button>
-              <button 
+              <button
                 onClick={() => handleEdit(questionData)} // Handle edit action
                 className="mt-2 p-2 bg-green-500 text-white rounded hover:bg-green-600">
                 <FaEdit /> {/* Edit icon */}
@@ -226,8 +226,8 @@ function CreateQuestion() {
       </div>
 
       {popUp && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-6 rounded-lg w-3/4 mx-auto">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center  items-center">
+          <div className="bg-white p-6 rounded-lg w-3/4 mx-auto max-h-screen overflow-y-auto">
             <div className="text-white flex justify-between items-center mb-4 bg-orange-400 p-2 rounded">
               <div className="text-xl font-semibold">Create Question</div>
               <div onClick={handleClosePopup} className="cursor-pointer text-lg font-bold">X</div>
@@ -240,9 +240,9 @@ function CreateQuestion() {
               <textarea
                 value={question}
                 onChange={(e) => setQuestion(e.target.value)}
-                className="border border-black w-full p-4 rounded mt-2 h-32"
+                className="border border-black w-full p-4 rounded mt-2 h-32 md:h-24"
               />
-              <div className='grid grid-cols-2 gap-4'>
+              <div className='grid grid-cols-2 gap-2'>
                 <div className="mt-4">
                   <label className="block font-medium">Option A</label>
                   <input
@@ -286,15 +286,15 @@ function CreateQuestion() {
 
               <div className="mt-4">
                 <p className="font-medium">Select Correct Option</p>
-                <div className="flex space-x-4">
+                <div className="flex flex-col space-y-2 md:flex-row md:space-x-4 md:space-y-0">
                   {['A', 'B', 'C', 'D'].map((opt) => (
                     <label key={opt} className="flex items-center">
                       <input
                         type="radio"
                         name="correctOption"
                         value={opt}
-                        checked={correctOption === opt}  // Ensure the correct option is selected
-                        onChange={() => setCorrectOption(opt)} // Update correctOption state
+                        checked={correctOption === opt}
+                        onChange={() => setCorrectOption(opt)}
                         className="mr-2"
                       />
                       Option {opt}
@@ -303,7 +303,8 @@ function CreateQuestion() {
                 </div>
               </div>
 
-              <div className="flex justify-end mt-6">
+
+              <div className="flex justify-end mt-6 md:mt-2 ">
                 <button
                   className={`p-2 border border-black rounded bg-green-500 text-white hover:bg-green-600 ${loading ? 'cursor-not-allowed' : ''}`}
                   onClick={handleSave}
