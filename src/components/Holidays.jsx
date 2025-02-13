@@ -321,8 +321,8 @@ function App() {
               className="bg-gray-200 p-4 rounded-lg shadow-lg max-w-full sm:max-w-[700px] w-full"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex items-center justify-between mb-4 bg-orange-500 border border-gray-950 p-2 rounded">
-                <h2 className="text-sm sm:text-lg">{editIndex !== null ? "Edit Holiday Details" : "Add New Holiday"}</h2>
+              <div className="flex items-center justify-between mb-4 bg-blue-950 border-gray-950 p-2 rounded">
+                <h2 className="text-sm text-white sm:text-lg">{editIndex !== null ? "Edit Holiday Details" : "Add New Holiday"}</h2>
                 <MdCancelPresentation
                   className="text-lg sm:text-xl cursor-pointer"
                   onClick={handleClosePopup}

@@ -143,7 +143,7 @@ function LeaveBalance() {
         <table className="w-full table-auto border-collapse">
           <thead>
             <tr>
-              <th className="border border-gray-300  bg-orange-400">Types of Leaves</th>
+              <th className="border border-gray-300 text-white  bg-blue-950">Types of Leaves</th>
               {leaveBalance.map((leave, index) => (
                 <th key={index} className="border border-gray-300 px-4 py-2 bg-gray-200">
                   {leave.leaveType}
@@ -153,7 +153,7 @@ function LeaveBalance() {
           </thead>
           <tbody>
             <tr>
-              <th className="border border-gray-300 px-4 py-2 bg-orange-400">Count</th>
+              <th className="border border-gray-300 px-4 py-2 text-white bg-blue-950">Count</th>
               {leaveBalance.map((leave, index) => (
                 <td key={index} className="border border-gray-300 px-4 py-2 text-center bg-gray-200">
                   {leave.count}

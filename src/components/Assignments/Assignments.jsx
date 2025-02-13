@@ -292,9 +292,9 @@ const Assignments = () => {
   <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
     <div className="bg-white p-4 rounded-lg shadow-lg">
       {/* Modal Header */}
-      <div className="bg-orange-500 flex justify-between px-4 py-2 rounded-lg border border-black mb-4">
-        <h2 className="text-sm lg:text-lg font-semibold text-center">Select Fields</h2>
-        <button onClick={handleModalToggle} className="text-lg lg:text-xl font-bold text-black">
+      <div className="bg-blue-950 flex justify-between px-4 py-2 rounded-lg border border-black mb-4">
+        <h2 className="text-sm lg:text-lg font-semibold text-white text-center">Select Fields</h2>
+        <button onClick={handleModalToggle} className="text-lg lg:text-xl font-bold text-white">
           <MdCancelPresentation />
         </button>
       </div>
@@ -307,7 +307,7 @@ const Assignments = () => {
             onClick={() => handleFieldSelect(field)} 
             className={`py-1 px-2 lg:py-2 lg:px-4 rounded text-sm lg:text-base ${
               selectedFields.find(f => f.name === field.name)
-                ? 'bg-orange-500 text-white'
+                ? 'bg-blue-950 text-white'
                 : 'bg-gray-300 text-black'
             }`}
           >
