@@ -243,7 +243,7 @@ const handleDateChange = (e) => {
             <AiTwotoneHome size={20} className="mr-2" />Home
           </div>
           <div className="flex gap-3 items-center">
-            <button className="flex items-center px-5 py-2 bg-blue-950 text-white rounded-lg hover:bg-orange-500 transition duration-300">
+            <button className="flex items-center px-5 py-2 bg-blue-950 text-white rounded-lg  transition duration-300">
               <AiOutlineDownload className="mr-2" />
               Export to Excel
             </button>
@@ -251,7 +251,7 @@ const handleDateChange = (e) => {
             {userRole !== 'ROLE_EMPLOYEE' && (
               <button
                 onClick={handleReportsClick}
-                className="flex items-center px-5 py-2 bg-blue-950 text-white rounded-lg hover:bg-orange-500 transition duration-300"
+                className="flex items-center px-5 py-2 bg-blue-950 text-white rounded-lg  transition duration-300"
               >
                 See My Reportees
               </button>
@@ -310,7 +310,7 @@ const handleDateChange = (e) => {
             <div className="flex justify-center mt-4">
               <button
                 onClick={handleCreate}
-                className="px-4 py-2 bg-blue-950 text-white rounded-md hover:bg-orange-500"
+                className="px-4 py-2 bg-blue-950 text-white rounded-md "
               >
                 Add Attendance
               </button>
@@ -367,7 +367,7 @@ const handleDateChange = (e) => {
               <div className="flex justify-end gap-2">
                 <button
                   onClick={handleSubmit}
-                  className="px-4 py-2 bg-blue-950 text-white rounded-md hover:bg-orange-500"
+                  className="px-4 py-2 bg-blue-950 text-white rounded-md "
                 >
                   Save
                 </button>

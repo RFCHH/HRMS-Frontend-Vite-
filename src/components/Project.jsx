@@ -277,7 +277,7 @@ function Project() {
       {showPopup && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
           <div className="bg-gray-200 p-2 sm:p-4 rounded-lg shadow-lg w-[95%] max-w-[350px] sm:max-w-[500px] md:max-w-[600px] lg:max-w-[700px] max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between mb-4 bg-orange-500 p-2 rounded-t-md">
+            <div className="flex items-center justify-between mb-4 bg-blue-950 p-2 rounded-t-md">
               <h2 className="text-lg text-white font-semibold">
                 {editIndex !== null ? "Edit Project Details" : "Add New Project"}
               </h2>

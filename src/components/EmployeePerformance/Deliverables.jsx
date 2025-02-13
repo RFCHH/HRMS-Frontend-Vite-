@@ -482,7 +482,7 @@ const PerformanceAndDeliverables = () => {
           {/* Right section with buttons */}
           <div className="flex lg:gap-4 gap-2 items-center">
             {/* Export to Excel button */}
-            <button className="flex items-center lg:px-4 lg:py-2 lg:text-lg text-xs px-3 py-2 bg-blue-950 text-white rounded-lg hover:bg-orange-500 transition duration-300">
+            <button className="flex items-center lg:px-4 lg:py-2 lg:text-lg text-xs px-3 py-2 bg-blue-950 text-white rounded-lg  transition duration-300">
               <AiOutlineDownload className="mr-2 text-white" />
               Export to Excel
             </button>

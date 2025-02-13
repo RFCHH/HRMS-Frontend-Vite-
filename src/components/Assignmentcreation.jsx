@@ -336,9 +336,9 @@ const handleModalOpen = () => {
       {isOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
           <div className="bg-white p-6 rounded-lg shadow-lg">
-            <div className='bg-orange-500 flex justify-between px-4 py-2 rounded-lg border border-black mb-4'>
+            <div className='bg-blue-950 text-white flex justify-between px-4 py-2 rounded-lg border border-black mb-4'>
               <h2 className="text-lg font-semibold text-center">Select Fields</h2>
-              <button onClick={handleModalToggle} className="text-xl font-bold text-black">
+              <button onClick={handleModalToggle} className="text-xl font-bold text-white">
                 <MdCancelPresentation />
               </button>
             </div>
@@ -368,11 +368,11 @@ const handleModalOpen = () => {
 {isHelloPopupOpen && (
   <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center p-2">
     <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg w-full sm:max-w-4xl mx-2 max-h-[80vh] overflow-y-auto">
-      <div className="bg-orange-500 flex justify-between px-4 py-2 rounded-lg border border-black mb-4">
+      <div className="bg-blue-950 text-white flex justify-between px-4 py-2 rounded-lg border border-black mb-4">
         <h2 className="text-base sm:text-lg font-semibold text-center">
           {editIndex !== null ? 'Edit' : 'Add Fields'}
         </h2>
-        <button onClick={handleHelloPopupToggle} className="text-lg sm:text-xl font-bold text-black">
+        <button onClick={handleHelloPopupToggle} className="text-lg sm:text-xl font-bold text-white">
           <MdCancelPresentation />
         </button>
       </div>
